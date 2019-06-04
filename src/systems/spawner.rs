@@ -3,6 +3,7 @@ use amethyst::{
     core::transform::Transform,
     ecs::*,
     shrev::{EventChannel, ReaderId},
+    renderer::Transparent,
 };
 
 use rand::{
@@ -112,7 +113,7 @@ impl<'s> System<'s> for DebugSpawnTriggerSystem {
                 transform.set_scale(scale, scale, 1.0);
                 transform.set_rotation_euler(0.0, 0.0, rotation);
             }
-            creature_entity_builder = creature_entity_builder.with(transform);
+            creature_entity_builder = creature_entity_builder.with(transform).with(Transparent);
             spawn_events.single_write(CreatureSpawnEvent {
                 creature_type,
                 entity: creature_entity_builder.build(),

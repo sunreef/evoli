@@ -7,7 +7,7 @@ Prefab (
                     name: "Plant"
                 ),
                 graphics: (
-                    mesh: Shape((shape: Plane(None),)),
+                    mesh: Asset(File("assets/meshes/plant.obj", ObjFormat, ())),
                     material: (
                         albedo: File("assets/simply_plant.png", Png, (channel: Srgb),),
                     ),

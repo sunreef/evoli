@@ -23,22 +23,28 @@ impl<'s> System<'s> for CameraMovementSystem {
         for (_, name, transform) in (&cameras, &names, &mut transforms).join() {
             if name.name == "Main camera" {
                 if input_handler.action_is_down("CameraMoveUp").unwrap() {
-                    transform.move_up(move_factor);
+                    transform.translation_mut()[1] += move_factor;
+//                    transform.move_up(move_factor);
                 }
                 if input_handler.action_is_down("CameraMoveDown").unwrap() {
-                    transform.move_down(move_factor);
+                    transform.translation_mut()[1] -= move_factor;
+//                    transform.move_down(move_factor);
                 }
                 if input_handler.action_is_down("CameraMoveLeft").unwrap() {
-                    transform.move_left(move_factor);
+                    transform.translation_mut()[0] -= move_factor;
+//                    transform.move_left(move_factor);
                 }
                 if input_handler.action_is_down("CameraMoveRight").unwrap() {
-                    transform.move_right(move_factor);
+                    transform.translation_mut()[0] += move_factor;
+//                    transform.move_right(move_factor);
                 }
                 if input_handler.action_is_down("CameraMoveForward").unwrap() {
-                    transform.move_forward(move_factor);
+                    transform.translation_mut()[2] -= move_factor;
+//                    transform.move_forward(move_factor);
                 }
                 if input_handler.action_is_down("CameraMoveBackward").unwrap() {
-                    transform.move_backward(move_factor);
+                    transform.translation_mut()[2] += move_factor;
+//                    transform.move_backward(move_factor);
                 }
             }
         }

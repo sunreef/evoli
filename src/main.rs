@@ -58,11 +58,13 @@ fn main() -> amethyst::Result<()> {
     let pipe = Pipeline::build().with_stage(
         Stage::with_backbuffer()
             .clear_target([0.02, 0.15, 0.02, 1.0], 1.0)
-            .with_pass(DrawFlat::<PosNormTex>::new().with_transparency(
+            .with_pass(DrawShaded::<PosNormTex>::new()
+                .with_transparency(
                 ColorMask::all(),
                 ALPHA,
-                None,
-            ))
+                Some(DepthMode::LessEqualTest),
+            )
+            )
             .with_pass(DrawDebugLines::<PosColorNorm>::new())
             .with_pass(DrawUi::new())
             .with_pass(amethyst_imgui::DrawUi::default()),

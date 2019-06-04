@@ -280,7 +280,8 @@ impl<'a> State<GameData<'a, 'a>, CustomStateEvent> for MainGameState {
         };
 
         let mut transform = Transform::default();
-        transform.set_position([0.0, 0.0, 12.0].into());
+        transform.set_position([0.0, 0.0, 10.0].into());
+        transform.set_rotation_euler(0.2,0.0,0.0);
 
         data.world
             .create_entity()
@@ -290,6 +291,18 @@ impl<'a> State<GameData<'a, 'a>, CustomStateEvent> for MainGameState {
                 std::f32::consts::FRAC_PI_2,
             )))
             .with(transform)
+            .build();
+
+        let mut light_transform = Transform::default();
+        light_transform.set_position([0.0, 0.0, 3.0].into());
+        data.world
+            .create_entity()
+            .named("Directional light")
+            .with(Light::Directional (DirectionalLight{
+                color: Rgba(1.0,1.0,1.0,1.0),
+                direction: [-0.2,-0.5,-1.0],
+            }))
+            .with(light_transform)
             .build();
     }
 
